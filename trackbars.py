@@ -8,7 +8,10 @@ def nothing(x):
 	pass
 
 cap = cv2.VideoCapture(0)
+# creating a window where we want to use trackbar
 cv2.namedWindow('frame')
+
+# creating trackbars
 cv2.createTrackbar('test','frame',50,500,nothing)
 cv2.createTrackbar('color/gray','frame', 0,2,nothing)
 
@@ -19,9 +22,9 @@ while True:
 	# getting the position of the trackbar
 	test = cv2.getTrackbarPos('test','frame')
 	font = cv2.FONT_HERSHEY_COMPLEX
-	#			   screen_position
+	#	[ screen_position(50,150)(left,top) ]
 	cv2.putText(frame, str(test), (50,150),font, 4, (0,0,255))
-	# trackbar for gray colour
+	#------------------- trackbar for gray colour-----------------
 	s = cv2.getTrackbarPos('color/gray','frame')
 	if s==0:
 		pass
