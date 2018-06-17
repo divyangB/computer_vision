@@ -10,7 +10,7 @@ def nothing(x):
 cap = cv2.VideoCapture(0)
 cv2.namedWindow('frame')
 cv2.createTrackbar('test','frame',50,500,nothing)
-cv2.createTrackbar('color/gray','frame', 0,1,nothing)
+cv2.createTrackbar('color/gray','frame', 0,2,nothing)
 
 # for showing some use of the trackbar we have to keep it in the loop
 
@@ -25,8 +25,11 @@ while True:
 	s = cv2.getTrackbarPos('color/gray','frame')
 	if s==0:
 		pass
-	else:
+	elif s==1:
 		frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+	else:
+		frame = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
+	cv2.putText(frame, str(s), (100,350),font, 4, (255,0,255))
 	cv2.imshow('frame',frame)
 	if cv2.waitKey(27) & 0xff == ord('q'):
 		break
